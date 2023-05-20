@@ -7,23 +7,18 @@ The Data And Insert The Data To The Appropriate Tables In Snowflake.
 
 How To Create A Stored Procedure In SQL
 ---------------------------------------
-
-.. code-block::
    
-     CREATE OR REPLACE PROCEDURE "SP_API_CAMPAIGN_NAME_BUSINESSRULES"
-     ("LEADS" NUMBER(38,0))
-     RETURNS VARCHAR(16777216)
-     LANGUAGE SQL
-     EXECUTE AS OWNER
+     ``CREATE OR REPLACE PROCEDURE "SP_API_CAMPAIGN_NAME_BUSINESSRULES"``
+     
+     ``("LEADS" NUMBER(38,0))``
+     
+     ``RETURNS VARCHAR(16777216)``
+     
+     ``LANGUAGE SQL``
+     
+     ``EXECUTE AS OWNER``
    
-   
-   
-   
-   
-   
-.. note::
- WHAT THIS BLOCK OF CODE DOES : 
- ------------------------------
+  
    
  In The First Line We Are Creating A Procedure Called SP_API_CAMPAIGN_NAME_BUSINESSRULES.
  In The Second Line, The Procedure Takes A Parameter Stored In A Variable Called Leads And Leads Is A Number Datatype With A Maximum Of 38 digits.
