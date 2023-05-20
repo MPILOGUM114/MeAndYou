@@ -50,7 +50,7 @@ Calling A Procedure In SQL
     
     
 In The Above Code, We Use The 'CALL' Keyword To Summon And Run The Procedure Called **SP_API_ME_AND_YOU_UNLIMITED_HISTORY_INSERT**.
-This procedure is stored in a database called DATAWAREHOUSE and the schema DISTRIBUTION_DATA_APPLICATION.
+This procedure is stored in a database called DATAWAREHOUSE and the schema DISTRIBUTION_DATA_APPLICATION.This procedure takes the parameter “Leads” which is a number with a maximum of 38 digits and inserts into the history table.Remember, The Parameter Is passed As A Number And Returned As A VARCHAR.
  
  
 
