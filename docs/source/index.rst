@@ -17,6 +17,8 @@ How To Create A Stored Procedure In SQL
      EXECUTE AS OWNER
      
      
+     
+     
  **In The First Line We Are Creating A Procedure Called SP_API_CAMPAIGN_NAME_BUSINESSRULES**
  
  **In The Second Line, The Procedure Takes A Parameter Stored In A Variable Called Leads And Leads Is A Number Datatype With A Maximum Of 38 digits.**
