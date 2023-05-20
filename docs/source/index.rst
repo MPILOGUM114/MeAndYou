@@ -15,5 +15,13 @@ How To Create A Stored Procedure In SQL
      RETURNS VARCHAR(16777216)
      LANGUAGE SQL
      EXECUTE AS OWNER
+     
+     
+ *In The First Line We Are Creating A Procedure Called SP_API_CAMPAIGN_NAME_BUSINESSRULES *
+ 
+ *In The Second Line, The Procedure Takes A Parameter Stored In A Variable Called Leads And Leads Is A Number Datatype With A Maximum Of 38 digits.
+ The Procedure Returns A Variable Length Character Datatype And The Procedure Is Utilized In the SQL Language By The Owner Of The Procedure*
+ 
+ 
 
 
