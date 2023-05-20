@@ -10,8 +10,10 @@ How To Create A Stored Procedure In SQL
 
 .. code-block::
    
-     aaaaaaaaaaaaa
-     aaaaaaaaaaaaaa
-     aaaaaaaaaaaaaa
+     CREATE OR REPLACE PROCEDURE "SP_API_CAMPAIGN_NAME_BUSINESSRULES"
+     ("LEADS" NUMBER(38,0))
+     RETURNS VARCHAR(16777216)
+     LANGUAGE SQL
+     EXECUTE AS OWNER
 
 
