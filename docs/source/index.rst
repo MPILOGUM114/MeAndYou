@@ -33,7 +33,12 @@ How To Create A Stored Procedure In SQL
   *In SQL Procedures, This Is The Body Of The Procedure And Everything Inside Here Will Be Executed.*
 
   **End;**
- 
+  
+  
+  
+  
+  CALLING A PROCEDURE IN SQL
+ --------------------------- 
  
 
 
