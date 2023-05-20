@@ -26,13 +26,13 @@ How To Create A Stored Procedure In SQL
  
  
 .. note::
-   AS ‘
+   **AS ‘**
 
-  BEGIN
+  **BEGIN**
 
-  In SQL Procedures, This Is The Body Of The Procedure And Everything Inside Here Will Be Executed
+  *In SQL Procedures, This Is The Body Of The Procedure And Everything Inside Here Will Be Executed.*
 
-  End;
+  **End;**
  
  
 
