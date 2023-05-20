@@ -36,9 +36,7 @@ How To Create A Stored Procedure In SQL
   
   
   
-  
-  CALLING A PROCEDURE IN SQL
- --------------------------- 
+ 
  
 
 
