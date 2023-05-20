@@ -17,6 +17,40 @@ How To Create A Stored Procedure In SQL
      EXECUTE AS OWNER
    
    
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
  WHAT THIS BLOCK OF CODE DOES : 
  ------------------------------
    
