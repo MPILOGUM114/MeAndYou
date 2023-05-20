@@ -25,5 +25,15 @@ How To Create A Stored Procedure In SQL
  The Procedure Returns A Variable Length Character Datatype And The Procedure Is Utilized In the SQL Language By The Owner Of The Procedure.
  
  
+.. note::
+   AS ‘
+
+  BEGIN
+
+  In SQL Procedures, This Is The Body Of The Procedure And Everything Inside Here Will Be Executed
+
+  End;
+ 
+ 
 
 
