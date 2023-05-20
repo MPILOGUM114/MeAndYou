@@ -49,7 +49,8 @@ Calling A Procedure In SQL
     DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.SP_API_ME_AND_YOU_UNLIMITED_HISTORY_INSERT(:LEADS);
     
     
-In The Above Code, 
+In The Above Code, We Use The 'CALL' Keyword To Summon And Run The Procedure Called **SP_API_ME_AND_YOU_UNLIMITED_HISTORY_INSERT**.
+This procedure is stored in a database called DATAWAREHOUSE and the schema DISTRIBUTION_DATA_APPLICATION.
  
  
 
