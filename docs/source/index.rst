@@ -73,7 +73,7 @@ DECLARING VARIABLES WITHIN PROCEDURES IN SQL
    leadsload integer;
    
    
-*In The Block Of Code Above, We Use The **DECLARE** keyword To Declare :*
+*In The Block Of Code Above, We Use The **DECLARE**  keyword To Declare:*
 
 *a) A Variable Called Max That Stores An Integer Data Type*
 
