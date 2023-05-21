@@ -62,6 +62,24 @@ This procedure is stored in a database called DATAWAREHOUSE and the schema DISTR
 
 
 
+DECLARING VARIABLES WITHIN PROCEDURES IN SQL
+--------------------------------------------
+
+.. code-block::
+
+   declare
+   max integer;
+   scoregroup varchar;
+   leadsload integer;
+   
+   
+*In The Block Of Code Above, We Use The **DECLARE** keyword To Declare :*
+*a) A Variable Called Max That Stores An Integer Data Type*
+*b) A Variable Called scoregroup That Stores A Varchar Data Type*
+*c) A Variable Called Leadsload That Stores An Integer Data Type*
+
+
+
  
  
 
