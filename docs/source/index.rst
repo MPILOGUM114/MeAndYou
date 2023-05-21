@@ -105,6 +105,65 @@ A view is a virtual table containing rows and columns from a real table.
 
 
 
+CREATING CTE'S IN SQL
+=====================
+
+
+WHAT IS A CTE ?
+---------------
+
+CTE, also known as a common table expression works as virtual tables that are created during execution of a query, used by that query and removed or deleted 
+after the query has finished execution.
+
+
+.. code-block::
+
+
+    CREATE OR REPLACE TABLE DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_ME_AND_YOU_UNLIMITED_STAGE_BANDS
+    AS
+    WITH MAIN AS (
+    select
+    COUNT(1) as LEADS,
+    SCOREGROUP
+    from DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_ME_AND_YOU_UNLIMITED_STAGE A
+    group by SCOREGROUP order by SCOREGROUP
+    ),
+    TOTAL AS (
+    SELECT SUM(LEADS) AS TOTALLEADS
+    FROM MAIN
+    )
+    
+    
+*In the code above we are creating a table called TS_API_ME_AND_YOU_UNLIMITED_STAGE_BANDS.*
+
+*The “with main” as line of code creates a temporary table (CTE) and stores the column called LEADS as “count” which is a column containing the total number of leads and scoregroup from the stage table. It will also output the scoregroup from the TS_API_ME_AND_YOU_UNLIMITED_STAGEBANDS table and order the scoregroup column in ascending order from lowest scoregroup to highest scoregroup. The query called TOTAL will output the total number of leads and store it as totalleads from the temporary table called main.*
+
+
+
+
+Working With The Row Number Function And Partition Keyword In SQL
+-----------------------------------------------------------------
+
+.. code-blocks::
+
+    SELECT
+    ROW_NUMBER () OVER (PARTITION BY ''SCOREGROUP'' ORDER BY SCOREGROUP) AS IDENTITY,
+    SCOREGROUP,
+    LEADS,
+    round(LEADS/(SELECT TOTALLEADS FROM TOTAL)*100,2) AS PERCENTAGE,
+    round(LEADS/(SELECT TOTALLEADS FROM TOTAL)*(:LEADS),0) AS LEADSTOLOAD
+    FROM MAIN;
+
+
+
+*The row_number function is used to assign each row a sequential integer. The partition by keyword will divide the rows by scoregroups. Essentially different      scoregroups will be divided and sorted in ascending order from lowest scoregroup to highest scoregroup sequentially. The total number of rows will also be        returned as LEADS. A percentage column will also be created which will contain the total number of records returned as a percentage rounded to 2 decimal          places.*
+   
+   
+
+
+
+
+
  
  
 
