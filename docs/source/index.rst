@@ -83,6 +83,28 @@ In The Block Of Code Above, We Use The **DECLARE**  keyword To Declare:
 
 
 
+Creating A Table From A View In SQL 
+-----------------------------------
+
+**Note:**
+
+A view is a virtual table containing rows and columns from a real table. 
+
+
+
+.. code-block::
+
+   CREATE OR REPLACE TABLE DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_CAMPAIGN_NAME_STAGE
+
+   AS SELECT *
+
+   FROM DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.VW_IK_ME_AND_YOU_UNLIMITED_AUTOMATION_DATAPOOL;
+   
+   
+*In this code above, we are creating a table called TS_API_CAMPAIGN_NAME_STAGE in the database called datawarehouse and IN the DISTRIBUTION_DATA_APPLICATION schema. Essentially we are creating the table TS_API_CAMPAIGN_NAME_STAGE from a view called VW_IK_CAMPAIGN_NAME_AUTOMATION_DATAPOOL.This view contains all leads (data) hence the name “datapool”. The newly created table will be populated with all the columns and rows from the view.*
+
+
+
  
  
 
