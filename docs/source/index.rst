@@ -159,8 +159,119 @@ Working With The Row Number Function And Partition Keyword In SQL
 *The row_number function is used to assign each row a sequential integer. The partition by keyword will divide the rows by scoregroups. Essentially different      scoregroups will be divided and sorted in ascending order from lowest scoregroup to highest scoregroup sequentially. The total number of rows will also be        returned as LEADS. A percentage column will also be created which will contain the total number of records returned as a percentage rounded to 2 decimal          places.*
    
    
+   
+   
+   
+Storing The Biggest Row Number Into A Variable Called Max
+---------------------------------------------------------
 
 
+We Can Do This By The Following Block Of Code : 
+
+
+.. code-block::
+    
+    
+    SELECT
+    max(IDENTITY) into :max
+    FROM DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_ME_AND_YOU_UNLIMITED_STAGE_BANDS;
+    LET counter := 1;
+    WHILE (counter <= max) DO
+    select
+    SCOREGROUP,
+    LEADSTOLOAD into :scoregroup,leadsload
+    from DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_ME_AND_YOU_UNLIMITED_STAGE_BANDS
+    where IDENTITY = :counter;
+    SELECT
+    max(IDENTITY) into :max
+    FROM DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_ME_AND_YOU_UNLIMITED_STAGE_BANDS;
+    
+    
+*In this block of code above we are taking the last row (biggest row number) and storing it into a variable max which we declared earlier*
+
+
+Working With Counters In SQL
+---------------------------
+
+.. code-block::
+
+   LET counter := 1;
+   WHILE (counter <= max) DO
+   select
+   SCOREGROUP,
+   LEADSTOLOAD into :scoregroup,leadsload
+   from DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_ME_AND_YOU_UNLIMITED_STAGE_BANDS
+   where IDENTITY = :counter;
+   
+   
+   
+*This block of code is used to set the counter to 1 (meaning we start counting from 1) and while the row is not the last row, the scoregroup and leadsload can be inserted into SCOREGROUP and LEADSTOLOAD respectively.*
+
+
+
+Inserting Fields Into A Table SQL
+---------------------------------
+
+.. code-block::
+
+   insert into DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.HISTORY_NAME_LEADSLOADED (
+   IDNUMBER,
+   CAMPAIGNID,
+   BATCHNAME,
+   CREATEDONDATE,
+   LEADEXPIRY,
+   DATATYPE,
+   CUSTOMERNAME,
+   LASTNAME,
+   CELLNUMBER,
+   CONTACTNUMBER1,
+   SCORE,
+   SCOREGROUP)
+   
+   
+   
+*This Line of code above inserts these fields into the table called HISTORY_NAME_LEADSLOADED*
+
+
+   
+Mapping Values In SQL
+---------------------
+
+In the code below, the columns that are inserted into the table TM_HLL_HISTORYLEADSLOADED are mapped with the values defined and corresponding with the select statement. For example, the a.idnumber values from TS_API_ME_AND_YOU_UNLIMITED_STAGE A table will be placed inside IDNUMBER column in the TM_HLL_HISTORYLEADSLOADED table.
+
+.. code-block::
+
+    Select
+    a.idnumber,
+    a.campaignid,
+    a.batchname,
+    a.createdondate,
+    a.leadexpiry,
+    a.datatype,
+    a.customername,
+    a.lastname,
+    a.phone_number1,
+    a.contactnumber1,
+    a.score,
+    a.scoregroup
+    from DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_ME_AND_YOU_UNLIMITED_STAGE A
+    where A.SCOREGROUP =: scoregroup
+    and A.SCOREGROUPROWNUM <=: leadsload;
+    counter := counter + 1;
+    end while;
+    return counter-1;
+    end;
+    
+    
+    
+This block of code below is used to iterate or loop through the different records to be added. When all the records have been inserted, the while loop which is used to loop through all records is terminated.
+
+
+``counter := counter + 1;``
+
+``end while;``
+
+``return counter-1;``
 
 
 
