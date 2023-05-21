@@ -74,8 +74,11 @@ DECLARING VARIABLES WITHIN PROCEDURES IN SQL
    
    
 *In The Block Of Code Above, We Use The **DECLARE** keyword To Declare :*
+
 *a) A Variable Called Max That Stores An Integer Data Type*
+
 *b) A Variable Called scoregroup That Stores A Varchar Data Type*
+
 *c) A Variable Called Leadsload That Stores An Integer Data Type*
 
 
