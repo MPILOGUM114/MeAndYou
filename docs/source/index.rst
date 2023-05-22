@@ -112,7 +112,7 @@ CREATING CTE'S IN SQL
 WHAT IS A CTE ?
 ---------------
 
-CTE, also known as a common table expression works as virtual tables that are created during execution of a query, used by that query and removed or deleted 
+CTE, also known as a common table expression works as temporary tables that are created during execution of a query, used by that query and removed or deleted 
 after the query has finished execution.
 
 
