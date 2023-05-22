@@ -49,7 +49,7 @@ Calling A Procedure In SQL
     DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.SP_API_CAMPAIGN_NAME_HISTORY_INSERT(:LEADS);
     
     
-In The Above Code, We Use The 'CALL' Keyword To Summon And Run The Procedure Called **SP_API_ME_AND_YOU_UNLIMITED_HISTORY_INSERT**.
+In The Above Code, We Use The 'CALL' Keyword To Summon And Run The Procedure Called **SP_API_CAMPAIGN_NAME_HISTORY_INSERT**.
 This procedure is stored in a database called DATAWAREHOUSE and the schema DISTRIBUTION_DATA_APPLICATION.This procedure takes the parameter “Leads” which is a number with a maximum of 38 digits and inserts into the history table.Remember, The Parameter Is passed As A Number And Returned As A VARCHAR.
 
 
@@ -98,7 +98,7 @@ A view is a virtual table containing rows and columns from a real table.
 
    AS SELECT *
 
-   FROM DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.VW_IK_ME_AND_YOU_UNLIMITED_AUTOMATION_DATAPOOL;
+   FROM DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.VW_IK_CAMPAIGN_NAME_AUTOMATION_DATAPOOL;
    
    
 *In this code above, we are creating a table called TS_API_CAMPAIGN_NAME_STAGE in the database called datawarehouse and in the DISTRIBUTION_DATA_APPLICATION schema. Essentially we are creating the table TS_API_CAMPAIGN_NAME_STAGE from a view called VW_IK_CAMPAIGN_NAME_AUTOMATION_DATAPOOL.This view contains all leads (data) hence the name “datapool”. The newly created table will be populated with all the columns and rows from the view.*
@@ -119,13 +119,13 @@ after the query has finished execution.
 .. code-block::
 
 
-    CREATE OR REPLACE TABLE DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_ME_AND_YOU_UNLIMITED_STAGE_BANDS
+    CREATE OR REPLACE TABLE DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_CAMPAIGN_NAME_STAGE_BANDS
     AS
     WITH MAIN AS (
     select
     COUNT(1) as LEADS,
     SCOREGROUP
-    from DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_ME_AND_YOU_UNLIMITED_STAGE A
+    from DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_CAMPAIGN_NAME_UNLIMITED_STAGE A
     group by SCOREGROUP order by SCOREGROUP
     ),
     TOTAL AS (
@@ -134,9 +134,9 @@ after the query has finished execution.
     )
     
     
-*In the code above we are creating a table called TS_API_ME_AND_YOU_UNLIMITED_STAGE_BANDS.*
+*In the code above we are creating a table called TS_API_ME_CAMPAIGN_NAME_STAGE_BANDS.*
 
-*The “with main” as line of code creates a temporary table (CTE) and stores the column called LEADS as “count” which is a column containing the total number of leads and scoregroup from the stage table. It will also output the scoregroup from the TS_API_ME_AND_YOU_UNLIMITED_STAGEBANDS table and order the scoregroup column in ascending order from lowest scoregroup to highest scoregroup. The query called TOTAL will output the total number of leads and store it as totalleads from the temporary table called main.*
+*The “with main” as line of code creates a temporary table (CTE) and stores the column called LEADS as “count” which is a column containing the total number of leads and scoregroup from the stage table. It will also output the scoregroup from the TS_API_CAMPAIGN_NAME_STAGEBANDS table and order the scoregroup column in ascending order from lowest scoregroup to highest scoregroup. The query called TOTAL will output the total number of leads and store it as totalleads from the temporary table called main.*
 
 
 
@@ -174,17 +174,17 @@ We Can Do This By The Following Block Of Code :
     
     SELECT
     max(IDENTITY) into :max
-    FROM DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_ME_AND_YOU_UNLIMITED_STAGE_BANDS;
+    FROM DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_CAMPAIGN_NAME_STAGE_BANDS;
     LET counter := 1;
     WHILE (counter <= max) DO
     select
     SCOREGROUP,
     LEADSTOLOAD into :scoregroup,leadsload
-    from DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_ME_AND_YOU_UNLIMITED_STAGE_BANDS
+    from DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_CAMPAIGN_NAME_STAGE_BANDS
     where IDENTITY = :counter;
     SELECT
     max(IDENTITY) into :max
-    FROM DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_ME_AND_YOU_UNLIMITED_STAGE_BANDS;
+    FROM DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_CAMPAIGN_NAME_STAGE_BANDS;
     
     
 *In this block of code above we are taking the last row (biggest row number) and storing it into a variable max which we declared earlier*
@@ -200,7 +200,7 @@ Working With Counters In SQL
    select
    SCOREGROUP,
    LEADSTOLOAD into :scoregroup,leadsload
-   from DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_ME_AND_YOU_UNLIMITED_STAGE_BANDS
+   from DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_CAMPAIGN_NAME_STAGE_BANDS
    where IDENTITY = :counter;
    
    
@@ -237,7 +237,7 @@ Inserting Fields Into A Table SQL
 Mapping Values In SQL
 ---------------------
 
-In the code below, the columns that are inserted into the table TM_HLL_HISTORYLEADSLOADED are mapped with the values defined and corresponding with the select statement. For example, the a.idnumber values from TS_API_ME_AND_YOU_UNLIMITED_STAGE A table will be placed inside IDNUMBER column in the TM_HLL_HISTORYLEADSLOADED table.
+In the code below, the columns that are inserted into the table TM_HLL_HISTORYLEADSLOADED are mapped with the values defined and corresponding with the select statement. For example, the a.idnumber values from TS_API_CAMPAIGN_NAME_STAGE A table will be placed inside IDNUMBER column in the TM_HLL_HISTORYLEADSLOADED table.
 
 .. code-block::
 
@@ -254,7 +254,7 @@ In the code below, the columns that are inserted into the table TM_HLL_HISTORYLE
     a.contactnumber1,
     a.score,
     a.scoregroup
-    from DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_ME_AND_YOU_UNLIMITED_STAGE A
+    from DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_CAMPAIGN_NAME_STAGE A
     where A.SCOREGROUP =: scoregroup
     and A.SCOREGROUPROWNUM <=: leadsload;
     counter := counter + 1;
