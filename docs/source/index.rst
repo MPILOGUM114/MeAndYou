@@ -101,7 +101,7 @@ A view is a virtual table containing rows and columns from a real table.
    FROM DATAWAREHOUSE.DISTRIBUTION_SCHEMA.VW_IK_CAMPAIGN_NAME_AUTOMATION_DATAPOOL;
    
    
-*In this code above, we are creating a table called TS_API_CAMPAIGN_NAME_STAGE in the database called datawarehouse and in the DISTRIBUTION_DATA_APPLICATION schema. Essentially we are creating the table TS_API_CAMPAIGN_NAME_STAGE from a view called VW_IK_CAMPAIGN_NAME_AUTOMATION_DATAPOOL.This view contains all leads (data) hence the name “datapool”. The newly created table will be populated with all the columns and rows from the view.*
+*In this code above, we are creating a table called TS_API_CAMPAIGN_NAME_STAGE in the database called datawarehouse and in the DISTRIBUTION_SCHEMA. Essentially we are creating the table TS_API_CAMPAIGN_NAME_STAGE from a view called VW_IK_CAMPAIGN_NAME_AUTOMATION_DATAPOOL.This view contains all leads (data) hence the name “datapool”. The newly created table will be populated with all the columns and rows from the view.*
 
 
 
@@ -119,13 +119,13 @@ after the query has finished execution.
 .. code-block::
 
 
-    CREATE OR REPLACE TABLE DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_CAMPAIGN_NAME_STAGE_BANDS
+    CREATE OR REPLACE TABLE DATAWAREHOUSE.DISTRIBUTION_SCHEMA.TS_API_CAMPAIGN_NAME_STAGE_BANDS
     AS
     WITH MAIN AS (
     select
     COUNT(1) as LEADS,
     SCOREGROUP
-    from DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_CAMPAIGN_NAME_UNLIMITED_STAGE A
+    from DATAWAREHOUSE.DISTRIBUTION_SCHEMA.TS_API_CAMPAIGN_NAME_UNLIMITED_STAGE A
     group by SCOREGROUP order by SCOREGROUP
     ),
     TOTAL AS (
@@ -174,17 +174,17 @@ We Can Do This By The Following Block Of Code :
     
     SELECT
     max(IDENTITY) into :max
-    FROM DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_CAMPAIGN_NAME_STAGE_BANDS;
+    FROM DATAWAREHOUSE.DISTRIBUTION_SCHEMA.TS_API_CAMPAIGN_NAME_STAGE_BANDS;
     LET counter := 1;
     WHILE (counter <= max) DO
     select
     SCOREGROUP,
     LEADSTOLOAD into :scoregroup,leadsload
-    from DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_CAMPAIGN_NAME_STAGE_BANDS
+    from DATAWAREHOUSE.DISTRIBUTION_SCHEMA.TS_API_CAMPAIGN_NAME_STAGE_BANDS
     where IDENTITY = :counter;
     SELECT
     max(IDENTITY) into :max
-    FROM DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_CAMPAIGN_NAME_STAGE_BANDS;
+    FROM DATAWAREHOUSE.DISTRIBUTION_SCHEMA.TS_API_CAMPAIGN_NAME_STAGE_BANDS;
     
     
 *In this block of code above we are taking the last row (biggest row number) and storing it into a variable max which we declared earlier*
@@ -200,7 +200,7 @@ Working With Counters In SQL
    select
    SCOREGROUP,
    LEADSTOLOAD into :scoregroup,leadsload
-   from DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_CAMPAIGN_NAME_STAGE_BANDS
+   from DATAWAREHOUSE.DISTRIBUTION_SCHEMA.TS_API_CAMPAIGN_NAME_STAGE_BANDS
    where IDENTITY = :counter;
    
    
@@ -214,7 +214,7 @@ Inserting Fields Into A Table SQL
 
 .. code-block::
 
-   insert into DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.HISTORY_NAME_LEADSLOADED (
+   insert into DATAWAREHOUSE.DISTRIBUTION_SCHEMA.HISTORY_NAME_LEADSLOADED (
    IDNUMBER,
    CAMPAIGNID,
    BATCHNAME,
@@ -254,7 +254,7 @@ In the code below, the columns that are inserted into the table TM_HLL_HISTORYLE
     a.contactnumber1,
     a.score,
     a.scoregroup
-    from DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_CAMPAIGN_NAME_STAGE A
+    from DATAWAREHOUSE.DISTRIBUTION_SCHEMA.TS_API_CAMPAIGN_NAME_STAGE A
     where A.SCOREGROUP =: scoregroup
     and A.SCOREGROUPROWNUM <=: leadsload;
     counter := counter + 1;
