@@ -46,15 +46,15 @@ Calling A Procedure In SQL
 .. code-block::
 
     CALL 
-    DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.SP_API_CAMPAIGN_NAME_HISTORY_INSERT(:LEADS);
+    DATAWAREHOUSE.DISTRIBUTION_SCHEMA.SP_API_CAMPAIGN_NAME_HISTORY_INSERT(:LEADS);
     
     
 In The Above Code, We Use The 'CALL' Keyword To Summon And Run The Procedure Called **SP_API_CAMPAIGN_NAME_HISTORY_INSERT**.
-This procedure is stored in a database called DATAWAREHOUSE and the schema DISTRIBUTION_DATA_APPLICATION.This procedure takes the parameter “Leads” which is a number with a maximum of 38 digits and inserts into the history table.Remember, The Parameter Is passed As A Number And Returned As A VARCHAR.
+This procedure is stored in a database called DATAWAREHOUSE and the schema DISTRIBUTION_SCHEMA.This procedure takes the parameter “Leads” which is a number with a maximum of 38 digits and inserts into the history table.Remember, The Parameter Is passed As A Number And Returned As A VARCHAR.
 
 
 
-``CALL DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.RANKING_PROCEDURE(11225,6);``
+``CALL DATAWAREHOUSE.DISTRIBUTION_SCHEMA.RANKING_PROCEDURE(11225,6);``
 
 
 *The above line of code takes two parameters. The first parameter specifies which campaign you referring to and this known as a campaign ID. The second parameter specifies how many days you want to rank the data. In the above example, you are ranking for 6 days. The leads will distributed evenly throughout all the days in each scoregroup.*
@@ -94,11 +94,11 @@ A view is a virtual table containing rows and columns from a real table.
 
 .. code-block::
 
-   CREATE OR REPLACE TABLE DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.TS_API_CAMPAIGN_NAME_STAGE
+   CREATE OR REPLACE TABLE DATAWAREHOUSE.DISTRIBUTION_SCHEMA.TS_API_CAMPAIGN_NAME_STAGE
 
    AS SELECT *
 
-   FROM DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.VW_IK_CAMPAIGN_NAME_AUTOMATION_DATAPOOL;
+   FROM DATAWAREHOUSE.DISTRIBUTION_SCHEMA.VW_IK_CAMPAIGN_NAME_AUTOMATION_DATAPOOL;
    
    
 *In this code above, we are creating a table called TS_API_CAMPAIGN_NAME_STAGE in the database called datawarehouse and in the DISTRIBUTION_DATA_APPLICATION schema. Essentially we are creating the table TS_API_CAMPAIGN_NAME_STAGE from a view called VW_IK_CAMPAIGN_NAME_AUTOMATION_DATAPOOL.This view contains all leads (data) hence the name “datapool”. The newly created table will be populated with all the columns and rows from the view.*
