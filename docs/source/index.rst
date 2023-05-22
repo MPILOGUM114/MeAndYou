@@ -54,7 +54,7 @@ This procedure is stored in a database called DATAWAREHOUSE and the schema DISTR
 
 
 
-``CALL DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.SP_AUTORANK(11225,6);``
+``CALL DATAWAREHOUSE.DISTRIBUTION_DATA_APPLICATION.RANKING_PROCEDURE(11225,6);``
 
 
 *The above line of code takes two parameters. The first parameter specifies which campaign you referring to and this known as a campaign ID. The second parameter specifies how many days you want to rank the data. In the above example, you are ranking for 6 days. The leads will distributed evenly throughout all the days in each scoregroup.*
